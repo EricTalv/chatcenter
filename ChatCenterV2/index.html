@@ -5,32 +5,58 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <style>
-   
-
+    html,
+    body { box-sizing: border-box; height: 100%; }
+    #username { width: 70px; }
+    #online {
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    margin: 10px 30px 5px 10px;
+    }
+    #wrapper {
+      height: 90%;
+      float: left;
+    }
     </style>
   </head>
   <body>
     
-  <div id="box">
+    <div id="wrapper">
+      <div id="online">
+        <h2>Online Users:</h2>
+         <ul id="users"></ul>
+      </div>
+    </div>
+    
+    <div id="content">
     <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+      <input id="username" autocomplete="off" placeholder="name" />
+      <input id="m" autocomplete="off" placeholder="message"/>
+      <button>Send</button>
     </form>
   </div>
   
   <script>
   $(function () {
+  //Initialize io
   var socket = io();
+  //Check for form submit
   $('form').submit(function(e){
   e.preventDefault(); // prevents page reloading
+  //send MessageBox value as chat message
   socket.emit('chat message', $('#m').val());
   $('#m').val('');
+  socket.emit('username', $('#username').val());
   return false;
   });
+  //Send message to chatbox
   socket.on('chat message', function(msg){
-  $('#messages').append($('<li>').text(msg));
+      $('#messages').append($('<li>').text(msg));
     });
-    });
+
+  });
     </script>
   </body>
 </html>

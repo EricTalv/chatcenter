@@ -21,12 +21,32 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+
+users = [];
+connections = [];
+
 //listen on the connection event for incoming 
 //sockets, and I log it to the console.
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
+	//User Connection Established
+	connections.push(socket);
+	console.log('Connected: %s sockets connected', connections.length);
+	io.emit('chat message', new Date().toLocaleTimeString() + " user connected");
+
+	//User Disconnected
+ 	socket.on('disconnect', function(msg){
+ 		connections.splice(connections.indexOf(socket), 1);
+   	     io.emit('chat message', new Date().toLocaleTimeString() + " user disconnected");
+   		 console.log('Disconnected: %s sockets connected', connections.length);
+	});
+
+ 	socket.on('chat message', function(msg) {
+ 		io.emit('chat message', msg);
+ 	});
+ 	socket.on('username', function(msg) {
+ 		console.log("mess:" + msg);
+ 	});
+
 });
 
 //We make the http server listen on port 3000.
