@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ChatCenter chat</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+
+
+
+    <style>
+    html,
+    body { box-sizing: border-box; height: 100%; }
+    #username { width: 70px; }
+    #online {
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    margin: 10px 30px 5px 10px;
+    }
+    #wrapper {
+      height: 90%;
+      float: left;
+    }
+    </style>
+  </head>
+  <body>
+     
+
+    <div id="wrapper">
+      <div id="output">
+        
+      </div>
+    </div>
+    
+    <div id="content">
+    <ul id="messages"></ul>
+      <input id="handle" autocomplete="off" placeholder="name" />
+      <input id="message" autocomplete="off" placeholder="message"/>
+      <button id="send">Send</button>
+  </div>
+  </body>
+  <script src="chat.js"></script>
+</html>
