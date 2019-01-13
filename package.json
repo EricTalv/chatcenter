@@ -1,0 +1,15 @@
+{
+  "name": "chatceneterv1",
+  "version": "1.0.0",
+  "description": "A socializing ground",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Talviste",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "*",
+    "express": "*"
+  }
+}
