@@ -3,6 +3,7 @@
   <head>
     <title>ChatCenter chat</title>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font: 13px Helvetica, Arial;}
@@ -20,8 +21,15 @@
     <input id="m" autocomplete="off" /><button>Send</button>
   </form>
   <script>
-  //This allows connection to the user 
-  var socket = io();
+   $(function () {
+    var socket = io();
+    $('form').submit(function(e){
+      e.preventDefault(); // prevents page reloading
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+  });
   </script>
 </body>
 </html>

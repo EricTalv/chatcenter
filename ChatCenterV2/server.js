@@ -25,6 +25,14 @@ app.get('/', function(req, res){
 //sockets, and I log it to the console.
 io.on('connection', function(socket){
   console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+  //Fetch message and display in console
+   socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+  });
 });
 
 //We make the http server listen on port 3000.
