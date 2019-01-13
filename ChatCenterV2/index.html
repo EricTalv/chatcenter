@@ -2,8 +2,6 @@
 <html>
   <head>
     <title>ChatCenter chat</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <style>
     html,
     body { box-sizing: border-box; height: 100%; }
@@ -15,8 +13,8 @@
     margin: 10px 30px 5px 10px;
     }
     #wrapper {
-      height: 90%;
-      float: left;
+    height: 90%;
+    float: left;
     }
     </style>
   </head>
@@ -25,38 +23,19 @@
     <div id="wrapper">
       <div id="online">
         <h2>Online Users:</h2>
-         <ul id="users"></ul>
-      </div>
+      <ul id="users"></ul>
     </div>
-    
-    <div id="content">
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="username" autocomplete="off" placeholder="name" />
-      <input id="m" autocomplete="off" placeholder="message"/>
-      <button>Send</button>
-    </form>
   </div>
   
-  <script>
-  $(function () {
-  //Initialize io
-  var socket = io();
-  //Check for form submit
-  $('form').submit(function(e){
-  e.preventDefault(); // prevents page reloading
-  //send MessageBox value as chat message
-  socket.emit('chat message', $('#m').val());
-  $('#m').val('');
-  socket.emit('username', $('#username').val());
-  return false;
-  });
-  //Send message to chatbox
-  socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    });
+  <div id="content">
+  <ul id="messageArea"></ul>
+  <input id="input-username" autocomplete="off" placeholder="name" />
+  <input id="input-message" autocomplete="off" placeholder="message"/>
+  <button>Send</button>
+</div>
 
-  });
-    </script>
-  </body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="static/index.js"></script>
+</body>
 </html>

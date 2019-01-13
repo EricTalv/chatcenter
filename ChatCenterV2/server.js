@@ -2,7 +2,9 @@
 //to node's HTTP servers as a callback to handle requests.
 //Express initializes app to be a function handler 
 //that you can supply to an HTTP server.
-var app = require('express')();
+var express = require('express');
+
+var app = express();
 
 //transfer data over the Hyper Text Transfer Protocol (HTTP).
 //Import HTTP 
@@ -18,34 +20,43 @@ var io = require('socket.io')(http);
 //We define a route handler / that gets called when we hit our website home.
 //the route handlers job is to map the route data and call the desired HttpHandler. 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
+   res.sendFile(__dirname + '/index.html');
+ });
+
+ app.use("/static", express.static('./static/'));
 
 
+//Arrays to store users and connections
 users = [];
 connections = [];
 
-//listen on the connection event for incoming 
-//sockets, and I log it to the console.
-io.on('connection', function(socket){
-	//User Connection Established
+io.on('connection', function (socket) {
+	//Add connection to Connections array
 	connections.push(socket);
+	//Console Log Connected sockets
 	console.log('Connected: %s sockets connected', connections.length);
-	io.emit('chat message', new Date().toLocaleTimeString() + " user connected");
+	//Write to clients that a user has connected
+  	io.emit('chat message', new Date().toLocaleTimeString() + " user connected");
 
-	//User Disconnected
- 	socket.on('disconnect', function(msg){
- 		connections.splice(connections.indexOf(socket), 1);
-   	     io.emit('chat message', new Date().toLocaleTimeString() + " user disconnected");
-   		 console.log('Disconnected: %s sockets connected', connections.length);
-	});
+  	//When a User has Disconnected
+  	socket.on('disconnect', function (data) {
+  		//Remove connection from Connections Array
+	   	connections.splice(connections.indexOf(socket), 1);
+	   	//Write to clients that a user has Disconnected
+	    io.emit('chat message', new Date().toLocaleTimeString() + " user disconnected");
+	    //Console Log Connected Sockets
+        console.log('Disconnected: %s sockets connected', connections.length);
+  	});
 
- 	socket.on('chat message', function(msg) {
- 		io.emit('chat message', msg);
- 	});
- 	socket.on('username', function(msg) {
- 		console.log("mess:" + msg);
- 	});
+  	//Retriev User InputMessage 
+   socket.on('chat message', (data) => {
+    // we tell the client to execute 'new message'
+    // socket.broadcast.emit('chat message', {
+    //   message: data
+    // });
+    console.log("msg" + data);
+
+  });
 
 });
 
@@ -53,4 +64,3 @@ io.on('connection', function(socket){
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
-
