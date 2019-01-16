@@ -4,6 +4,7 @@
 //that you can supply to an HTTP server.
 var express = require('express');
 
+
 var app = express();
 
 //transfer data over the Hyper Text Transfer Protocol (HTTP).
@@ -24,7 +25,6 @@ app.get('/', function(req, res){
  });
 
  app.use("/static", express.static('./static/'));
-
 
 //Arrays to store users and connections
 users = [];
@@ -49,14 +49,9 @@ io.on('connection', function (socket) {
   	});
 
   	//Retriev User InputMessage 
-   socket.on('chat message', (data) => {
-    // we tell the client to execute 'new message'
-    // socket.broadcast.emit('chat message', {
-    //   message: data
-    // });
-    console.log("msg" + data);
-
-  });
+   socket.on('chat message', function (data) {
+   		console.log('msg:' + data);
+   });
 
 });
 

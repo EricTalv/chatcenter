@@ -1,0 +1,20 @@
+html,body {
+ box-sizing: border-box;
+ height: 100%;
+}
+
+#username {
+ width: 70px; 
+}
+
+#online {
+ float: left;
+ border: 1px solid #ccc;
+ border-radius: 5%;
+ margin: 10px 30px 5px 10px;
+}
+
+#wrapper {
+ height: 90%;
+ float: left;
+}

@@ -9,10 +9,9 @@ $(function() {
   var socket = io();
 
   //Send the server Your message
-const sendMessage = () => {
-	var message = $InputMessage.val();
-	
-	socket.emit('chat message', message);
-}
+  socket.emit('chat message', $InputMessage);
+  
+
+
 
 });
