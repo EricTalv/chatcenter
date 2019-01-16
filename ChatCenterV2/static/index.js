@@ -5,6 +5,7 @@ $(function() {
   var $InputMessage = $('#input-message');
   var $InputName = $('#input-username');
   var $window = $(window);
+  var $users = $('#users');
 
   //Initialize Socket
   var socket = io();
@@ -24,12 +25,14 @@ $(function() {
 
   //Display Connected
   socket.on('connected', function (data) {
-    $messageArea.append($('<li>').text(data));
+    $messageArea.append($('<li>').text(data['time']));
+    $users.append($('<li>').text(data['sockets']))
   })
 
   //Display Disconnected
   socket.on('disconnected', function (data) {
-    $messageArea.append($('<li>').text(data));
+    $messageArea.append($('<li>').text(data['time']));
+    $users.append($('<li>').text(data['sockets']))
   })
 
   //Retrieve Data from server and

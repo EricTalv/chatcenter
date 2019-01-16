@@ -12,6 +12,7 @@ html,body {
  border: 1px solid #ccc;
  border-radius: 5%;
  margin: 10px 30px 5px 10px;
+ padding: 10px;
 }
 
 #wrapper {

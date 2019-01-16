@@ -36,16 +36,23 @@ io.on('connection', function (socket) {
 	//Console Log Connected sockets
 	console.log('Connected: %s sockets connected', connections.length);
 	//Write to clients that a user has connected
-  	io.emit('connected', new Date().toLocaleTimeString() + " user connected");
+  	io.emit('connected', {
+		time: new Date().toLocaleTimeString() + " user connected",
+		sockets: connections.length
+  	});
 
   	//When a User has Disconnected
   	socket.on('disconnect', function (data) {
   		//Remove connection from Connections Array
 	   	connections.splice(connections.indexOf(socket), 1);
-	   	//Write to clients that a user has Disconnected
-	    io.emit('disconnected', new Date().toLocaleTimeString() + " user disconnected");
 	    //Console Log Connected Sockets
         console.log('Disconnected: %s sockets connected', connections.length);
+     	//Write to clients that a user has Disconnected
+        io.emit('disconnected', {
+		time: new Date().toLocaleTimeString() + " user disconnected",
+		sockets: connections.length
+  	});
+
   	});
 
    //Retriev Client Data
@@ -53,9 +60,6 @@ io.on('connection', function (socket) {
    		socket.emit('chat', data);
    		console.log(data);
    });
-
-   
-
 });
 
 //We make the http server listen on port 3000.
