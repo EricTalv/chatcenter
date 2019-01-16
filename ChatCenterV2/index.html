@@ -2,14 +2,11 @@
 <html>
   <head>
     <title>ChatCenter chat</title>
-
     <link rel="stylesheet" href="static/index.css">
-
-
   </head>
   <body>
-    
-    <div id="wrapper">
+
+  <div id="wrapper">
       <div id="online">
         <h2>Online Users:</h2>
       <ul id="users"></ul>
@@ -17,11 +14,11 @@
   </div>
   
   <div id="content">
-  <ul id="messageArea"></ul>
-  <input id="input-username" autocomplete="off" placeholder="name" />
-  <input id="input-message" autocomplete="off" placeholder="message"/>
-  <button>Send</button>
-</div>
+    <ul id="message-area"></ul>
+    <input id="input-username" autocomplete="off" placeholder="name" />
+    <input id="input-message" autocomplete="off" placeholder="message"/>
+    <button>Send</button>
+  </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>

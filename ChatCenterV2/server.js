@@ -36,22 +36,25 @@ io.on('connection', function (socket) {
 	//Console Log Connected sockets
 	console.log('Connected: %s sockets connected', connections.length);
 	//Write to clients that a user has connected
-  	io.emit('chat message', new Date().toLocaleTimeString() + " user connected");
+  	io.emit('connected', new Date().toLocaleTimeString() + " user connected");
 
   	//When a User has Disconnected
   	socket.on('disconnect', function (data) {
   		//Remove connection from Connections Array
 	   	connections.splice(connections.indexOf(socket), 1);
 	   	//Write to clients that a user has Disconnected
-	    io.emit('chat message', new Date().toLocaleTimeString() + " user disconnected");
+	    io.emit('disconnected', new Date().toLocaleTimeString() + " user disconnected");
 	    //Console Log Connected Sockets
         console.log('Disconnected: %s sockets connected', connections.length);
   	});
 
-  	//Retriev User InputMessage 
-   socket.on('chat message', function (data) {
-   		console.log('msg:' + data);
+   //Retriev Client Data
+   socket.on('chat', function (data) {
+   		socket.emit('chat', data);
+   		console.log(data);
    });
+
+   
 
 });
 
