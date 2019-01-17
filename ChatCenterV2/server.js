@@ -57,7 +57,8 @@ io.on('connection', function (socket) {
 
    //Retriev Client Data
    socket.on('chat', function (data) {
-   		socket.emit('chat', data);
+   		io.emit('chat', data);
+   		
    		console.log(data);
    });
 });
