@@ -38,9 +38,7 @@ $(function() {
   //Retrieve Data from server and
   //Display on DOM
   socket.on('chat', function (data) {
-    //$messageArea.append('<li>' + data['name'] + ' ' + data['message'] + '</li>');
-    $messageArea.append($('<li>').text(data['name']));
-    $messageArea.append($('<li>').text(data['message']));
+    $messageArea.append('<li>' + data['name'] + ' ' + data['message'] + '</li>');
   });
 
 
