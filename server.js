@@ -1,52 +1,53 @@
-// var express = require('express');
-// var app = express();
-// var server = require('http').createServer(app);
-// var io = require('socket.io').listen(server);
+var express = require('express');
 
-// server.listen(process.env.PORT || 3000);
-// console.log('Server Running');
+var app = express();
 
-// app.get('/', function(req, res){
-// 	res.sendFile(_dirname + '/index.html');
-// });
-
-var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
 
+var io = require('socket.io')(http);
+
+app.get('/', function(req, res){
+   res.sendFile(__dirname + '/index.html');
+ });
+
+ app.use("/static", express.static('./static/'));
+
+//Arrays to store users and connections
 users = [];
 connections = [];
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
-
-http.listen(port, function(){
-  console.log('listening on *:' + port);
-});
-
-io.sockets.on('connection', function(socket){
+io.on('connection', function (socket) {
+	//Add connection to Connections array
 	connections.push(socket);
+	//Console Log Connected sockets
 	console.log('Connected: %s sockets connected', connections.length);
+	//Write to clients that a user has connected
+  	io.emit('connected', {
+		time: new Date().toLocaleTimeString() + " user connected",
+		sockets: connections.length
+  	});
 
-	// Disconnect
-	socket.on('disconnect', function(data) {
-		
-		connections.splice(connections.indexOf(socket), 1);
-		console.log('Disconnected: %s sockets connected', connections.length);
-	});
+  	//When a User has Disconnected
+  	socket.on('disconnect', function (data) {
+  		//Remove connection from Connections Array
+	   	connections.splice(connections.indexOf(socket), 1);
+	    //Console Log Connected Sockets
+        console.log('Disconnected: %s sockets connected', connections.length);
+     	//Write to clients that a user has Disconnected
+        io.emit('disconnected', {
+	   	     time: new Date().toLocaleTimeString() + " user disconnected",
+          	sockets: connections.length
+      	});
+    });
 
-	// Send Message
-	socket.on('send message', function(data) {
-		console.log(data);
-		io.sockets.emit('new message', {msg: data});
-	});
+   //Retriev Client Data
+   socket.on('chat', function (data) {
+    		io.emit('chat', data);
+   		   console.log(data);
+      });
+    });
 
+//We make the http server listen on port 3000.
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
