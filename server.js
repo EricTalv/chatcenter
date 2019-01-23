@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
     console.log('Connected: %s sockets connected', connections.length);
     //Write to clients that a user has connected
     io.emit('connected', {
-        time: new Date().toLocaleTimeString() + users.,
+        time: new Date().toLocaleTimeString() + "connected user",
         sockets: connections.length
     });
 

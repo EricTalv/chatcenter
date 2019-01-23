@@ -49,13 +49,13 @@ $(function() {
 
     //emit saadab
     //on kuulab
-});
 
-//Create random user ID
-function createName() {
-    var minNumber = 1;
-    var maxNumber = 300;
-    var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
-    var newName = "ID" + randomNumber;
-    return newName;
-}
+    //Create random user ID
+    function createName() {
+        var minNumber = 1;
+        var maxNumber = 300;
+        var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+        var newName = "ID" + randomNumber;
+        return newName;
+    }
+});
