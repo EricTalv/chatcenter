@@ -10,6 +10,16 @@ $(function() {
     //Initialize Socket
     var socket = io();
 
+    //Create random user ID
+    function createName() {
+        var minNumber = 1;
+        var maxNumber = 300;
+        var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+        var newName = "ID" + randomNumber;
+        return newName;
+    }
+
+    //Assign random name
     $InputName.val(createName);
 
     //Check when a user has pressed enter
@@ -24,8 +34,6 @@ $(function() {
             $InputMessage.val('');
         }
     });
-
-
 
 
     //Display Connected
@@ -50,12 +58,5 @@ $(function() {
     //emit saadab
     //on kuulab
 
-    //Create random user ID
-    function createName() {
-        var minNumber = 1;
-        var maxNumber = 300;
-        var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
-        var newName = "ID" + randomNumber;
-        return newName;
-    }
+
 });

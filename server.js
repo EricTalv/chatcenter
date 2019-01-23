@@ -19,7 +19,7 @@ connections = [];
 
 io.on('connection', function(socket) {
     //push it to the Users Array
-    users.push(createName);
+   
     //Add connection to Connections array
     connections.push(socket);
     //Console Log Connected sockets
