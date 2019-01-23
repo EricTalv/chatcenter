@@ -33,9 +33,7 @@ io.on('connection', function(socket) {
     //When a User has Disconnected
     socket.on('disconnect', function(data) {
         //check usernames
-        if(!socket.username) return;
-        users.splice(users.indexOf(socket.username), 1);
-        updateUsernames
+
 
         //Remove connection from Connections Array
         connections.splice(connections.indexOf(socket), 1);
@@ -49,11 +47,7 @@ io.on('connection', function(socket) {
     });
 
     //Create a random username to new connection
-    socket.on('new user', function(data, callback) {
-        callback(true);
-        socket.username = createName;
-        users.push(socket.username);
-    });
+   
 
 
     //Retriev client Data
@@ -64,18 +58,11 @@ io.on('connection', function(socket) {
     });
 
     //Check if user is typing 
-    socket.on('typing', () => {
-        socket.broadcast.emit('typing', {
-
-        });
-    });
+  
 
     //Check if user stopped typing 
 
-    function updateUsernames(){
-        io.sockets.emit('get users', usernames);
-    }
-
+   
 });
 
 //We make the http server listen on port 3000.
