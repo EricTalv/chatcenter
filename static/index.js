@@ -30,11 +30,9 @@ $(function() {
         $messageArea.append($('<li>').text(data['time']));
         //Add new user to the userboard
         $users.append($('<li>').text(data['username']))
-        
-    });
-
-    //Set username into input
+        //Set username into input
         $InputName.val(data['username']);
+    });
 
     //Display Disconnected
     socket.on('disconnected', function(data) {
