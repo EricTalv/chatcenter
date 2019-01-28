@@ -18,23 +18,17 @@ users = [];
 connections = [];
 
 io.on('connection', function(socket) {
-    //push it to the Users Array
-   
     //Add connection to Connections array
     connections.push(socket);
     //Console Log Connected sockets
     console.log('Connected: %s sockets connected', connections.length);
     //Write to clients that a user has connected
     io.emit('connected', {
-        time: new Date().toLocaleTimeString() + "connected user",
+        time: new Date().toLocaleTimeString() + " connected user",
         sockets: connections.length
     });
-
     //When a User has Disconnected
     socket.on('disconnect', function(data) {
-        //check usernames
-
-
         //Remove connection from Connections Array
         connections.splice(connections.indexOf(socket), 1);
         //Console Log Connected Sockets
@@ -46,11 +40,18 @@ io.on('connection', function(socket) {
         });
     });
 
-    //Create a random username to new connection
-   
+    //Get new username
+    socket.on('new user', (newName) => {
+
+        users.push(newName);
+        console.log(newName);
 
 
-    //Retriev client Data
+    });
+    
+
+
+    //Retriev and send client Data/messages
     socket.on('chat', function(data) {
         //Send client data
         io.emit('chat', data);
