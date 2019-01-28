@@ -13,19 +13,33 @@ app.get('/', function(req, res) {
 
 app.use("/static", express.static('./static/'));
 
+function createName() {
+    var minNumber = 1;
+    var maxNumber = 300;
+    var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+    var newName = "ID" + randomNumber;
+    return newName;
+}
+
 //Arrays to store users and connections
 users = [];
 connections = [];
 
 io.on('connection', function(socket) {
+    //Assign connection a new username
+    users.push(createName());
     //Add connection to Connections array
     connections.push(socket);
     //Console Log Connected sockets
     console.log('Connected: %s sockets connected', connections.length);
+
+    var newUserID = users[connections.length - 1];
+
     //Write to clients that a user has connected
     io.emit('connected', {
-        time: new Date().toLocaleTimeString() + " connected user",
-        sockets: connections.length
+        time: new Date().toLocaleTimeString() + " " + newUserID + " user connected",
+        sockets: connections.length,
+        username: newUserID
     });
     //When a User has Disconnected
     socket.on('disconnect', function(data) {
@@ -35,21 +49,11 @@ io.on('connection', function(socket) {
         console.log('Disconnected: %s sockets connected', connections.length);
         //Write to clients that a user has Disconnected
         io.emit('disconnected', {
-            time: new Date().toLocaleTimeString() + " user disconnected",
-            sockets: connections.length
+            time: new Date().toLocaleTimeString() + " " + newUserID + " user disconnected",
+            sockets: connections.length,
+            username: newUserID
         });
     });
-
-    //Get new username
-    socket.on('new user', (newName) => {
-
-        users.push(newName);
-        console.log(newName);
-
-
-    });
-    
-
 
     //Retriev and send client Data/messages
     socket.on('chat', function(data) {
@@ -59,11 +63,11 @@ io.on('connection', function(socket) {
     });
 
     //Check if user is typing 
-  
+
 
     //Check if user stopped typing 
 
-   
+
 });
 
 //We make the http server listen on port 3000.
