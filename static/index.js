@@ -36,7 +36,7 @@ $(function() {
     //Display Disconnected
     socket.on('disconnected', function(data) {
         $messageArea.append($('<li>').text(data['time']));
-        $users.append($('<li>').text(data['sockets']))
+        $('#users li').last().remove();
     })
 
     //Retrieve Data from server and
