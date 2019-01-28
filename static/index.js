@@ -26,18 +26,21 @@ $(function() {
 
     //Display Connected
     socket.on('connected', function(data) {
+        //Show on message board the time when a user connected
         $messageArea.append($('<li>').text(data['time']));
+        //Add new user to the userboard
         $users.append($('<li>').text(data['username']))
-        //Assign random name
-        $InputName.val(data['username']);
+        
+    });
 
-    })
+    //Set username into input
+        $InputName.val(data['username']);
 
     //Display Disconnected
     socket.on('disconnected', function(data) {
         $messageArea.append($('<li>').text(data['time']));
         $('#users li').last().remove();
-    })
+    });
 
     //Retrieve Data from server and
     //Display on DOM
