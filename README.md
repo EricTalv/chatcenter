@@ -41,9 +41,9 @@ Localhost will listen at localhost:3000
 
 # Sitemap
 
-`/`           <- Index|Home page
-`/twowaychat` <- Two way chat-room
-...
++ `/`           <- Index|Home page
++ `/twowaychat` <- Two way chat-room
++ ...
 
 # Plans & Implementations
 
@@ -69,18 +69,17 @@ Consider this:
  
  lets assume this is our Index Fronted Page:
  
- `
+ <pre>
   Title 
     some description
-  ---
+  
   Feature1
     property_1
-  ---
+  
   Feature2
     property_1 
     property_2
-  
- `
+ </pre>
 
 We start with a simple straight forward introduction, and
 then follow-up with our features.
@@ -98,7 +97,7 @@ I think I'll be deviating away from the classical `MVC` structure.
 
 To best visualize what the structure would looklike ill use folders:
 
-`
+<pre>
 ChatCenter
 |-- server.js
 |-- views
@@ -113,7 +112,7 @@ ChatCenter
 |   |-- js
 |-- controllers
     |-- admin
-`
+</pre>
 
 I need to figure out where we can put the feature logic or the essential **pod**.
 
