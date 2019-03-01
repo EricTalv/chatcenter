@@ -55,7 +55,8 @@ Localhost will listen at localhost:3000
 | 4-way     	| A 4-way user chat                                                     	| Intrests/Tags; Roles                      	|        	|
 | Voice     	| Chat utilizing microphones                                            	| Microphones; Sound                        	|        	|
 | Cam       	| WebCam chat                                                           	| WebCam; Simulators                        	|        	|
-| Plaza     	| A Vizual                                                               	| This is overkill dude                     	|        	|
+| Plaza     	| A Vizual chatCenter                                                   	| This is overkill dude                     	|        	|
+| Open World	| Open, regular, anyone can join chat                                   	| Usernames; Maybe rooms                    	|        	|
 
 
 
