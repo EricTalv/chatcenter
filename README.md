@@ -68,7 +68,7 @@ Consider this:
  We will have an index page in which the client 
  can nice and easy choose where they wish to go.
  
- lets assume this is our Index Fronted Page:
+ lets assume this is our main Index Fronted Page:
  
  <pre>
   Title 
