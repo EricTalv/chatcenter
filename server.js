@@ -15,7 +15,7 @@ app.use("/static", express.static('./static/'));
 
 function createName() {
     var minNumber = 1;
-    var maxNumber = 300;
+    var maxNumber = 300;node
     var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
     var newName = "ID" + randomNumber;
     return newName;
