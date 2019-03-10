@@ -20,6 +20,7 @@ $(function() {
                 name: $Username.text()
             });
         }
+        $InputMessage.val('');
     });
 
 
