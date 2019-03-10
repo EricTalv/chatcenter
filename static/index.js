@@ -3,7 +3,7 @@ $(function() {
     //Initialize variables
     var $messageArea = $('#message-area');
     var $InputMessage = $('#input-message');
-   
+    var $Username = $('#username');
     var $window = $(window);
     var $users = $('#users');
 
@@ -16,7 +16,8 @@ $(function() {
         if (event.which === 13) {
             //Send the server Your message & Name
             socket.emit('chat', {
-                message: $InputMessage.val()
+                message: $InputMessage.val(),
+                name: $Username.val()
             });
             $InputMessage.val('');
         }
@@ -29,7 +30,6 @@ $(function() {
         $messageArea.append($('<li>').text(data['time']));
         //Add new user to the userboard
         $users.append($('<li>').text(data['username']))
-   
     });
 
     //Display Disconnected
@@ -46,6 +46,5 @@ $(function() {
 
     //emit saadab
     //on kuulab
-
 
 });

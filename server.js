@@ -15,7 +15,7 @@ app.use("/static", express.static('./static/'));
 
 function createName() {
     var minNumber = 1;
-    var maxNumber = 300;node
+    var maxNumber = 300;
     var randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
     var newName = "ID" + randomNumber;
     return newName;
@@ -27,19 +27,19 @@ connections = [];
 
 io.on('connection', function(socket) {
     //Assign connection a new username
-    users.push(createName());
+    users.push("Stranger");
     //Add connection to Connections array
     connections.push(socket);
     //Console Log Connected sockets
     console.log('Connected: %s sockets connected', connections.length);
 
-    var newUserID = users[connections.length - 1];
+   
 
     //Write to clients that a user has connected
     io.emit('connected', {
-        time: new Date().toLocaleTimeString() + " " + newUserID + " user connected",
+        time: new Date().toLocaleTimeString() + " " + "Stranger" + " user connected",
         sockets: connections.length,
-        username: newUserID
+        username: "Stranger"
     });
     //When a User has Disconnected
     socket.on('disconnect', function(data) {
@@ -49,9 +49,9 @@ io.on('connection', function(socket) {
         console.log('Disconnected: %s sockets connected', connections.length);
         //Write to clients that a user has Disconnected
         io.emit('disconnected', {
-            time: new Date().toLocaleTimeString() + " " + newUserID + " user disconnected",
+            time: new Date().toLocaleTimeString() + " " + "Stranger" + " user disconnected",
             sockets: connections.length,
-            username: newUserID
+            username: "Stranger"
         });
     });
 
