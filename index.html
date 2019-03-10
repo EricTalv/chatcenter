@@ -5,23 +5,25 @@
     <link href="static/index.css" rel="stylesheet">
 </head>
 <body>
-    <fieldset id="online-board">
-        <legend>Online Users:</legend>
-        <ul id="users"></ul>
-    </fieldset>
-    <fieldset id="chat-board">
-        <legend>Chat Box:</legend>
-        <ul id="messages"></ul>
-    </fieldset>
-    <fieldset id="history-board">
-        <legend>History:</legend>
-        <ul id="history"></ul>
-    </fieldset>
-    <div id="content">
-        <ul id="message-area"></ul>
-        <input id="input-username" placeholder="name"/>
-        <p id="username">USRNAME</p>
-        <input autocomplete="off" id="input-message" placeholder="message"/>
+    <div id="container">
+        <fieldset id="online-board">
+            <legend>Online Users:</legend>
+            <ul id="users"></ul>
+        </fieldset>
+        <fieldset id="chat-board">
+            <legend>Chat Box:</legend>
+            <div id="messager-controls">
+                <ul id="message-area"> </ul>
+                <p id="username">USRNAME</p>
+                <input id="input-username" placeholder="name"/>
+            </div>
+        </fieldset>
+        <fieldset id="history-board">
+            <legend>History:</legend>
+            <ul id="history"></ul>
+        </fieldset>
+
+
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>

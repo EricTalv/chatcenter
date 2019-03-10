@@ -17,5 +17,12 @@ legend {
 	font-weight: bold;
 	font-size: 25px;
 	font-variant: small-caps;
+}
 
+#container {
+	display: flex;
+}
+
+#chat-board {
+	flex-grow: 2;
 }
