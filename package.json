@@ -15,5 +15,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/EricTalv/repository.git"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4"
   }
 }

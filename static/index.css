@@ -9,9 +9,13 @@ body,html {
 
 fieldset {
 	width: 20%;
+	font-family: "Consolas", sans-serif;
 }
 
 legend {
+	font-family: "Trebuchet MS", sans-serif;
 	font-weight: bold;
 	font-size: 25px;
+	font-variant: small-caps;
+
 }
