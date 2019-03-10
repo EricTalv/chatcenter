@@ -17,9 +17,8 @@ $(function() {
             //Send the server Your message & Name
             socket.emit('chat', {
                 message: $InputMessage.val(),
-                name: $Username.val()
+                name: $Username.text()
             });
-            $InputMessage.val('');
         }
     });
 
