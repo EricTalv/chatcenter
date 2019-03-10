@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
     <title>ChatCenter chat</title>
     <link href="static/index.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <ul id="messages"></ul>
 </fieldset>
 <fieldset id="history-board">
-    <legend>Chat Box:</legend>
+    <legend>History:</legend>
     <ul id="history"></ul>
 </fieldset>
 <div id="content">
@@ -22,7 +22,6 @@
     <!-- <input id="input-username" autocomplete="off" placeholder="name" /> -->
     <p id="username">USRNAME</p>
     <input autocomplete="off" id="input-message" placeholder="message"/>
-    <button>Send</button>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
