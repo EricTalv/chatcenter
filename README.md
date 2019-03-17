@@ -56,7 +56,7 @@ Localhost will listen at localhost:3000
 | Voice     	| Chat utilizing microphones                                            	| Microphones; Sound                        	|        	|
 | Cam       	| WebCam chat                                                           	| WebCam; Simulators                        	|        	|
 | Plaza     	| A Vizual chatCenter                                                   	| This is overkill dude                     	|        	|
-| Open World	| Open, regular, anyone can join chat                                   	| Usernames; Maybe rooms                    	|        	|
+| Open World	| Open, regular, anyone can join chat                                   	| Usernames; Maybe rooms                    	|       50% 	|
 
 
 
